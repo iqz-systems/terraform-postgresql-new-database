@@ -32,6 +32,10 @@ module "app_db" {
 
 ## Outputs
 
+- `db_name` string
+  - The name of the database.
+- `db_username` string
+  - The username using which the database can be accessed.
 - `db_password` string
   - The password associated with the user for the database.
 
