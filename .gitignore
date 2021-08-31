@@ -1,0 +1,10 @@
+*.tfvars
+.terraform/
+data/
+server.crt
+client.crt
+client.key
+client.pk8
+kube_config
+res/*.zip
+tfplan
