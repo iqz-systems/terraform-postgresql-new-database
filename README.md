@@ -19,3 +19,22 @@ module "app_db" {
   password_length   = 32
 }
 ```
+
+## Variables
+
+- `db_name` string
+  - The name of the database to be created.
+- `username` string
+  - The database username to be created.
+- `password_length` number
+  - The length of the password to be created.
+  - Default: `64`
+
+## Outputs
+
+- `db_password` string
+  - The password associated with the user for the database.
+
+## Links
+
+- [Terraform registry](https://registry.terraform.io/modules/iqz-systems/new-database/postgresql/latest)
