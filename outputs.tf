@@ -11,7 +11,7 @@ output "db_username" {
 }
 
 output "db_password" {
-  value       = postgresql_role.db_user.name.password
+  value       = postgresql_role.db_user.password
   sensitive   = true
   description = "The password associated with the user for the database."
 }
