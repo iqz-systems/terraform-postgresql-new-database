@@ -13,7 +13,7 @@ You should [configure](https://registry.terraform.io/providers/cyrilgdn/postgres
 ```hcl
 module "app_db" {
   source            = "iqz-systems/new-database/postgresql"
-  version           = "1.0.1"
+  version           = "2.0.2"
   username          = "app_db_user"
   db_name           = "app_db"
   password_length   = 32
