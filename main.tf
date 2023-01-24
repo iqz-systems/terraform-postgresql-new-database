@@ -13,8 +13,7 @@ terraform {
 
 resource "random_password" "db_password" {
   length           = var.password_length
-  special          = true
-  override_special = "_%()@!~+-*"
+  special          = false
 
   keepers = {
     user_name = var.username
