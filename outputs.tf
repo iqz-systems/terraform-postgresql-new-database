@@ -15,3 +15,9 @@ output "db_password" {
   sensitive   = true
   description = "The password associated with the user for the database."
 }
+
+output "schemas" {
+  value       = postgresql_schema.schema
+  sensitive   = false
+  description = "Created schema objects."
+}
