@@ -12,12 +12,16 @@ terraform {
 }
 
 resource "random_password" "db_password" {
-  length           = var.password_length
-  special          = false
+  length  = var.password_length
+  special = false
 
   keepers = {
     user_name = var.username
   }
+}
+
+locals {
+  schemas_map = { for sch in var.schemas : sch.name => sch.add_to_search_path }
 }
 
 resource "postgresql_role" "db_user" {
@@ -28,6 +32,8 @@ resource "postgresql_role" "db_user" {
   superuser       = false
   create_database = false
   create_role     = false
+
+  search_path = [for name, add_condition in local.schemas_map : name if add_condition == true]
 }
 
 resource "postgresql_database" "db" {
@@ -36,6 +42,14 @@ resource "postgresql_database" "db" {
 
   connection_limit  = -1
   allow_connections = true
+}
+
+resource "postgresql_schema" "schema" {
+  for_each = local.schemas_map
+
+  name     = each.key
+  database = postgresql_database.db.name
+  owner    = postgresql_role.db_user.name
 }
 
 // Removes permissions from the public schema to prevent
