@@ -57,7 +57,7 @@ resource "postgresql_schema" "schema" {
 // to access it.
 resource "postgresql_grant" "revoke_other" {
   database    = postgresql_database.db.name
-  role        = "public"
+  role        = postgresql_role.db_user.name
   schema      = "public"
   object_type = "schema"
   privileges  = []
