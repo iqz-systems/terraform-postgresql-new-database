@@ -21,3 +21,9 @@ output "schemas" {
   sensitive   = false
   description = "Created schema objects."
 }
+
+output "roles" {
+  value       = { for name, r in postgresql_role.role : name => { name = r.name, password = (var.roles[name].login ? random_password.role[name].result : null) } }
+  sensitive   = true
+  description = "The additional roles, keyed by role name. password is null for roles without login."
+}
